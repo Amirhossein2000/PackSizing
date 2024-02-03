@@ -3,36 +3,39 @@ package main
 import "fmt"
 
 func generate(packSizes []int, maxCounts []int, targetNumber int, sum int, str string) (string, int) {
-	bestValue := 0
-	bestCombination := ""
+	bestNum := 0
+	bestCom := ""
 
 	for i := 0; i < maxCounts[0]; i++ {
 		a := sum + (i * packSizes[0])
 		key := fmt.Sprintf("%s + (%dx%d)", str, i, packSizes[0])
 
-		if targetNumber == a {
+		if a == targetNumber {
 			return key, a
 		}
 
-		if bestValue != 0 && a >= bestValue {
-			break
-		}
-
-		if a >= targetNumber && (a < bestValue || bestValue == 0) {
-			bestCombination = key
-			bestValue = a
+		if a >= targetNumber {
+			if bestNum == 0 || a < bestNum {
+				bestNum = a
+				bestCom = key
+			}
+			continue
 		}
 
 		if len(packSizes) > 1 {
-			str, sum := generate(packSizes[1:], maxCounts[1:], targetNumber, a, key)
-			if sum >= targetNumber && (sum < bestValue || bestValue == 0) {
-				bestCombination = str
-				bestValue = sum
+			key, a = generate(packSizes[1:], maxCounts[1:], targetNumber, a, key)
+			if a == targetNumber {
+				return key, a
+			}
+			
+			if bestNum == 0 || a < bestNum {
+				bestNum = a
+				bestCom = key
 			}
 		}
 	}
 
-	return bestCombination, bestValue
+	return bestCom, bestNum
 }
 
 func calculateMaxCounts(packSizes []int, targetNumber int) []int {
