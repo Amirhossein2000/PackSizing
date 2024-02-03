@@ -14,11 +14,16 @@ func generate(packSizes []int, maxCounts []int, targetNumber int, sum int, str s
 			return key, a
 		}
 
-		if a >= targetNumber {
+		if a > targetNumber {
 			if bestNum == 0 || a < bestNum {
 				bestNum = a
 				bestCom = key
 			}
+
+			if len(packSizes) == 1 {
+				return key, a
+			}
+			
 			continue
 		}
 
@@ -27,7 +32,7 @@ func generate(packSizes []int, maxCounts []int, targetNumber int, sum int, str s
 			if a == targetNumber {
 				return key, a
 			}
-			
+
 			if bestNum == 0 || a < bestNum {
 				bestNum = a
 				bestCom = key

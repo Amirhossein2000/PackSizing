@@ -51,11 +51,12 @@ func main() {
 	fmt.Println(generateCombinations(packetSize, 250))
 	fmt.Println(generateCombinations(packetSize, 500000))
 	fmt.Println(generateCombinations(packetSize, 50000000))
+	fmt.Println(generateCombinations(packetSize, 50000006))
 
 	fmt.Println(generate(packetSize, calculateMaxCounts(packetSize, 263), 263, 0, ""))
 	fmt.Println(generate(packetSize, calculateMaxCounts(packetSize, 250), 250, 0, ""))
 	fmt.Println(generate(packetSize, calculateMaxCounts(packetSize, 500000), 500000, 0, ""))
-	fmt.Println(generate(packetSize, calculateMaxCounts(packetSize, 50000000), 50000000, 0, ""))
+	fmt.Println(generate(packetSize, calculateMaxCounts(packetSize, 50000006), 50000006, 0, ""))
 
 	// tryThis([]int{3, 1}, 10)
 }
