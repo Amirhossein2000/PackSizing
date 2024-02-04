@@ -1,6 +1,7 @@
 package main
 
 import (
+	"sort"
 	"sync"
 )
 
@@ -20,6 +21,10 @@ func (s *storage) getPacks() []int {
 func (p *storage) update(input []int) {
 	p.m.Lock()
 	defer p.m.Unlock()
+
+	sort.Slice(input, func(i, j int) bool {
+		return input[i] > input[j]
+	})
 
 	p.p = input
 }

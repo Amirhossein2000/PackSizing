@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func lenThreeSolution(packSizes []int, targetNumber int) (string, int) {
-	maxCounts := []int{targetNumber / packSizes[0], targetNumber / packSizes[1], targetNumber / packSizes[2]}
+	maxCounts := maxCounts(packSizes, targetNumber)
 
 	bestCombination := ""
 	bestValue := 0

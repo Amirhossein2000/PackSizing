@@ -7,6 +7,12 @@ import (
 	"net/http"
 )
 
+func apiServe() {
+	http.HandleFunc("/packs", UpdatePacks)
+	http.HandleFunc("/calc", CalculatePacks)
+	http.ListenAndServe(":8080", nil)
+}
+
 func UpdatePacks(w http.ResponseWriter, r *http.Request) {
 	packsRequest := []int{}
 	defer r.Body.Close()
@@ -19,7 +25,7 @@ func UpdatePacks(w http.ResponseWriter, r *http.Request) {
 
 	err = json.Unmarshal(buf, &packsRequest)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 
@@ -43,7 +49,7 @@ func CalculatePacks(w http.ResponseWriter, r *http.Request) {
 
 	err = json.Unmarshal(buf, &req)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
+		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 

@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func moreLenThree(packSizes []int, maxCounts []int, targetNumber int, sum int, str string) (string, int) {
+func lenMoreThreeSolution(packSizes []int, maxCounts []int, targetNumber int, sum int, str string) (string, int) {
 	bestNum := 0
 	bestCom := ""
 
@@ -28,7 +28,7 @@ func moreLenThree(packSizes []int, maxCounts []int, targetNumber int, sum int, s
 		}
 
 		if len(packSizes) > 1 {
-			key, a = moreLenThree(packSizes[1:], maxCounts[1:], targetNumber, a, key)
+			key, a = lenMoreThreeSolution(packSizes[1:], maxCounts[1:], targetNumber, a, key)
 			if a == targetNumber {
 				return key, a
 			}
@@ -54,11 +54,16 @@ func maxCounts(packSizes []int, targetNumber int) []int {
 
 func calculate(targetNum int) (string, int) {
 	packs := packStorage.getPacks()
+	for _, p := range packs {
+		if targetNum%p == 0 {
+			return fmt.Sprintf("(%d x %d)", targetNum/p, p), targetNum
+		}
+	}
 
 	if len(packs) <= 3 {
 		return lenThreeSolution(packs, targetNum)
 	}
 
-	com, num := moreLenThree(packs, maxCounts(packs, targetNum), targetNum, 0, "")
+	com, num := lenMoreThreeSolution(packs, maxCounts(packs, targetNum), targetNum, 0, "")
 	return com[2:], num
 }
