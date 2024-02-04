@@ -13,11 +13,17 @@ func lenThreeSolution(packSizes []int, targetNumber int) (string, int) {
 		if bestValue != 0 && a > bestValue {
 			continue
 		}
+		if targetNumber == a {
+			goto end
+		}
 
 		for j := maxCounts[1]; j >= 0; j-- {
 			b := j * packSizes[1]
 			if bestValue != 0 && a+b > bestValue {
 				continue
+			}
+			if targetNumber == a+b {
+				goto end
 			}
 
 			for k := maxCounts[2]; k >= 0; k-- {

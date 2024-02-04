@@ -6,7 +6,7 @@ func lenMoreThreeSolution(packSizes []int, maxCounts []int, targetNumber int, su
 	bestNum := 0
 	bestCom := ""
 
-	for i := 0; i < maxCounts[0]; i++ {
+	for i := maxCounts[0]; i >= 0; i-- {
 		a := sum + (i * packSizes[0])
 		key := fmt.Sprintf("%s + (%dx%d)", str, i, packSizes[0])
 
@@ -18,10 +18,6 @@ func lenMoreThreeSolution(packSizes []int, maxCounts []int, targetNumber int, su
 			if bestNum == 0 || a < bestNum {
 				bestNum = a
 				bestCom = key
-			}
-
-			if len(packSizes) == 1 {
-				return key, a
 			}
 
 			continue
