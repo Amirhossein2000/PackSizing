@@ -23,7 +23,7 @@ func generate(packSizes []int, maxCounts []int, targetNumber int, sum int, str s
 			if len(packSizes) == 1 {
 				return key, a
 			}
-			
+
 			continue
 		}
 
@@ -50,15 +50,4 @@ func calculateMaxCounts(packSizes []int, targetNumber int) []int {
 	}
 
 	return maxCounts
-}
-
-func tryThis(input []int, number int) {
-	if len(input) < 1 {
-		return
-	}
-
-	for i := 0; i < input[0]; i++ {
-		fmt.Println(number)
-		tryThis(input[1:], number)
-	}
 }

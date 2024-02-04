@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func generateCombinations(packSizes []int, targetNumber int) (string, int) {
+func generateCombinationsLengthThree(packSizes []int, targetNumber int) (string, int) {
 	maxCounts := []int{targetNumber / packSizes[0], targetNumber / packSizes[1], targetNumber / packSizes[2]}
 
 	bestCombination := ""
@@ -46,12 +46,6 @@ end:
 
 func main() {
 	packetSize := []int{53, 31, 23}
-
-	fmt.Println(generateCombinations(packetSize, 263))
-	fmt.Println(generateCombinations(packetSize, 250))
-	fmt.Println(generateCombinations(packetSize, 500000))
-	fmt.Println(generateCombinations(packetSize, 50000000))
-	fmt.Println(generateCombinations(packetSize, 50000006))
 
 	fmt.Println(generate(packetSize, calculateMaxCounts(packetSize, 263), 263, 0, ""))
 	fmt.Println(generate(packetSize, calculateMaxCounts(packetSize, 250), 250, 0, ""))
