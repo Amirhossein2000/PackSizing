@@ -45,7 +45,7 @@ func RootRoute(w http.ResponseWriter, r *http.Request) {
 		</style>
 	</head>
 	<body>
-		<a href="https://github.com/Amirhossein2000/PackSizing/blob/main/gymshark.postman_collection.json" target="_blank">Visit Postman Collection</a>
+		<a href="https://github.com/Amirhossein2000/PackSizing/blob/main/packSizing.postman_collection.json" target="_blank">Visit Postman Collection</a>
 	</body>
 	</html>	
 	`)
