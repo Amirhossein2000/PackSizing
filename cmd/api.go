@@ -100,6 +100,7 @@ func CalculatePacks(w http.ResponseWriter, r *http.Request) {
 	com, num := calculate(count)
 
 	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
 	err = json.NewEncoder(w).Encode(
 		map[string]string{
 			"Answer": fmt.Sprintf("%s = %d", com, num),
