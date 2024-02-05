@@ -8,9 +8,47 @@ import (
 )
 
 func apiServe() {
+	http.HandleFunc("/", RootRoute)
 	http.HandleFunc("/packs", UpdatePacks)
 	http.HandleFunc("/calc", CalculatePacks)
 	http.ListenAndServe(":8080", nil)
+}
+
+func RootRoute(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprint(w, `
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Postman Collection</title>
+		<style>
+			body {
+				font-family: 'Arial', sans-serif;
+				text-align: center;
+				margin: 50px;
+			}
+	
+			a {
+				display: inline-block;
+				padding: 10px 20px;
+				background-color: #ff6c37; /* Postman orange color */
+				color: #fff;
+				text-decoration: none;
+				border-radius: 5px;
+			}
+	
+			a:hover {
+				background-color: #e85c31; /* Slightly darker shade on hover */
+			}
+		</style>
+	</head>
+	<body>
+		<a href="https://github.com/Amirhossein2000/PackSizing/blob/main/gymshark.postman_collection.json" target="_blank">Visit Postman Collection</a>
+	</body>
+	</html>	
+	`)
 }
 
 func UpdatePacks(w http.ResponseWriter, r *http.Request) {
