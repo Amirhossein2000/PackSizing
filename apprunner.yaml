@@ -5,4 +5,5 @@ build:
     build:
       - go build -o app
 run:
+  runtime-version: 1.18.10
   command: ./app
