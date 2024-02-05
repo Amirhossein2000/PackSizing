@@ -3,7 +3,7 @@ runtime: go1
 build:
   commands:
     build:
-      - go build -o app
+      - go build -o app ./cmd
 run:
   runtime-version: 1.18.10
   command: ./app
